@@ -4577,7 +4577,7 @@ a.thumbnail.active {
 .media,
 .media-body {
   overflow: hidden;
-  zoom: 1;
+  transform: scale(1)
 }
 .media,
 .media .media {
