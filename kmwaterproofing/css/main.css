@@ -212,16 +212,12 @@ a:before, a:after {
    Wrap Sections
    ========================================================================== */
 
-   /* CG */
-#home {
-	padding: 110px 0;
-}
 #home {
 	/* background: url(../img/header_bg.jpg) no-repeat center top; */
-	margin-top: -50px;
-	padding-top: 120px;
+	/* margin-top: -50px; */
+	padding-top: 100px;
 	text-align: center;
-	background-attachment: relative;
+	/* background-attachment: relative;
 	background-position: center center;
 	min-height: 650px;
 	width: 100%;
@@ -233,14 +229,14 @@ a:before, a:after {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	padding-bottom: 100px;
+	padding-bottom: 100px; */
 }
 #home h1 {
 	/* color: #ffffff;  CG */
-	font-size: 50px;
+	/* font-size: 50px;
 	font-weight: 400;
 	text-align: center;
-	letter-spacing: 3px;
+	letter-spacing: 3px; */
 }
 #home p {
 	/* color: #fff;  CG */
@@ -320,7 +316,7 @@ a:before, a:after {
 }
 #projects {
 	/* background: #fff; */
-	background: #f5f5f5;  /* CG */
+	/* background: #f5f5f5;   CG */
 	padding: 60px 0;
 }
 #projects .btn-default {
@@ -328,22 +324,22 @@ a:before, a:after {
 }
 #contact {
 	background: #fff;
-	padding: 60px 0;
+	padding: 60px 0px 0px 0px;
 	text-align: center;
 }
-#contact .form {
+#contact .form, #welcomepopup .form {
 	padding: 30px 0;
 }
-#contact .fa {
+#contact .fa, #welcomepopup .fa {
 	color: #ffbf00;
 	margin-bottom: 10px;
 }
-#contact .text-danger {
+#contact .text-danger, #welcomepopup .text-danger {
 	color: #e74c3c;
 	text-align: left;
 	margin: 0;
 }
-#contact .btn {
+#contact .btn, #welcomepopup .btn {
 	font-weight: 500;
 	font-size: 18px;
 	margin-top: 30px;
@@ -351,7 +347,7 @@ a:before, a:after {
 	color: #fff;
 	border: 0;
 }
-#contact .btn:hover, #contact .btn:focus {
+#contact .btn:hover, #contact .btn:focus, #welcomepopup .btn:hover, #welcomepopup .btn:focus {
 	background-color: #e9af03;
 	outline: 0px;
 }
@@ -547,7 +543,7 @@ body .header {
 
 @media screen and (max-width:769px) {
 #home h1 {
-	font-size: 80px;
+	/* font-size: 80px; */
 }
 #home p {
 	font-size: 30px;
