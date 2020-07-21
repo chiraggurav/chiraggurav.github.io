@@ -90,6 +90,9 @@ body {
 .modal-footer {
 	background: #2b2b2b;
 }
+.navbar {
+	/* min-height: 80px; */
+}
 .navbar-default {
 	border-color: transparent;
 	background-color: #dadada;
@@ -97,6 +100,9 @@ body {
 .navbar-inverse .navbar-brand {
 	font-weight: 500;
 	font-size: 20px;
+}
+.navbar-inverse .navbar-brand img {
+	height: 70px;
 }
 .navbar-toggle {
 	border-color: transparent;
@@ -286,37 +292,7 @@ a:before, a:after {
 #services p {
 	text-align: center;
 }
-#team {
-	background: #f5f5f5;
-	padding: 60px 0;
-}
-#team H4 {
-	padding-top: 10px;
-}
-#team p.large {
-	margin-top: 60px;
-	margin-bottom: 40px;
-}
-#team .fa {
-	width: 30px;
-	height: 30px;
-	margin: 0 3px;
-	border-radius: 100%;
-	font-size: 15px;
-	line-height: 30px;
-	outline: 0;
-	color: #fff;
-	background-color: #c4c4c4;
-	-webkit-transition: all .3s;
-	-moz-transition: all .3s;
-	transition: all .3s;
-}
-#team .fa:hover {
-	background-color: #ffbf00;
-}
 #projects {
-	/* background: #fff; */
-	/* background: #f5f5f5;   CG */
 	padding: 60px 0;
 }
 #projects .btn-default {
