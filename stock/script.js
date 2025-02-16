@@ -1,50 +1,28 @@
 async function fetchStockData() {
     const symbol = document.getElementById("stockSymbol").value.toUpperCase();
-    if (!symbol) {
-        alert("Please enter a stock symbol!");
-        return;
-    }
+    const apiKey = "UGM8QMD8ND2JTBNE";  // Replace with your API key
+    const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}.BSE&apikey=${apiKey}`;
 
-    // NSE India API URL (Fetch JSON Data)
-    const url = `https://www.nseindia.com/api/quote-equity?symbol=${symbol}`;
-    
     try {
-        const response = await fetch(url, {
-            headers: {
-                "User-Agent": "Mozilla/5.0", // NSE blocks requests without a User-Agent
-                "Accept": "application/json",
-            }
-        });
+        const response = await fetch(url);
         const data = await response.json();
-
-        if (!data || !data.priceInfo) {
-            alert("Invalid stock symbol or data not available!");
+        if (!data["Time Series (Daily)"]) {
+            alert("Invalid stock symbol!");
             return;
         }
 
-        const stock = data.priceInfo;
-        
-        // Get current & previous prices
-        const currentPrice = stock.lastPrice;
-        const prevClose = stock.previousClose;
+        const timeSeries = data["Time Series (Daily)"];
+        const dates = Object.keys(timeSeries);
+        const latestData = timeSeries[dates[0]];
 
-        // Calculate % changes
-        const weeklyChange = ((currentPrice - prevClose) / prevClose) * 100;
-        const monthlyChange = ((currentPrice - stock.weekHighLow.min) / stock.weekHighLow.min) * 100;
-        const yearlyChange = ((currentPrice - stock.weekHighLow.max) / stock.weekHighLow.max) * 100;
-
-        // Update table
         document.getElementById("stockData").innerHTML = `
             <tr>
                 <td>${symbol}</td>
-                <td>${currentPrice.toFixed(2)}</td>
-                <td>${weeklyChange.toFixed(2)}%</td>
-                <td>${monthlyChange.toFixed(2)}%</td>
-                <td>${yearlyChange.toFixed(2)}%</td>
+                <td>${latestData["1. open"]}</td>
+                <td>${latestData["4. close"]}</td>
             </tr>
         `;
     } catch (error) {
         console.error("Error fetching stock data:", error);
-        alert("Failed to retrieve stock data. NSE India may be blocking the request.");
     }
 }
