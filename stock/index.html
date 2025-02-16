@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSE Stock Tracker</title>
+    <script src="script.js" defer></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        table { width: 80%; margin: 20px auto; border-collapse: collapse; }
+        th, td { padding: 10px; border: 1px solid black; text-align: center; }
+        input, button { padding: 10px; margin: 5px; }
+    </style>
+</head>
+<body>
+
+    <h2>NSE Stock Tracker</h2>
+    
+    <input type="text" id="stockSymbol" placeholder="Enter NSE Stock Symbol (e.g., TCS.NS)">
+    <button onclick="fetchStockData()">Get Stock Data</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Stock Symbol</th>
+                <th>Current Price</th>
+                <th>Weekly Change (%)</th>
+                <th>Monthly Change (%)</th>
+                <th>Yearly Change (%)</th>
+            </tr>
+        </thead>
+        <tbody id="stockData"></tbody>
+    </table>
+
+</body>
+</html>
