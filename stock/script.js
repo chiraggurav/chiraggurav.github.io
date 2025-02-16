@@ -5,24 +5,33 @@ async function fetchStockData() {
         return;
     }
 
-    const url = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbol}`;
+    // NSE India API URL (Fetch JSON Data)
+    const url = `https://www.nseindia.com/api/quote-equity?symbol=${symbol}`;
     
     try {
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            headers: {
+                "User-Agent": "Mozilla/5.0", // NSE blocks requests without a User-Agent
+                "Accept": "application/json",
+            }
+        });
         const data = await response.json();
-        
-        if (!data.quoteResponse || data.quoteResponse.result.length === 0) {
-            alert("Invalid stock symbol!");
+
+        if (!data || !data.priceInfo) {
+            alert("Invalid stock symbol or data not available!");
             return;
         }
 
-        const stock = data.quoteResponse.result[0];
+        const stock = data.priceInfo;
         
-        // Get price changes
-        const currentPrice = stock.regularMarketPrice;
-        const weeklyChange = ((currentPrice - stock.fiftyTwoWeekLow) / stock.fiftyTwoWeekLow) * 100;
-        const monthlyChange = ((currentPrice - stock.fiftyTwoWeekHigh) / stock.fiftyTwoWeekHigh) * 100;
-        const yearlyChange = ((currentPrice - stock.regularMarketPreviousClose) / stock.regularMarketPreviousClose) * 100;
+        // Get current & previous prices
+        const currentPrice = stock.lastPrice;
+        const prevClose = stock.previousClose;
+
+        // Calculate % changes
+        const weeklyChange = ((currentPrice - prevClose) / prevClose) * 100;
+        const monthlyChange = ((currentPrice - stock.weekHighLow.min) / stock.weekHighLow.min) * 100;
+        const yearlyChange = ((currentPrice - stock.weekHighLow.max) / stock.weekHighLow.max) * 100;
 
         // Update table
         document.getElementById("stockData").innerHTML = `
@@ -36,6 +45,6 @@ async function fetchStockData() {
         `;
     } catch (error) {
         console.error("Error fetching stock data:", error);
-        alert("Failed to retrieve stock data. Try again!");
+        alert("Failed to retrieve stock data. NSE India may be blocking the request.");
     }
 }
